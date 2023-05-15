@@ -4,32 +4,24 @@
   <title>PromptTemplateApp</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_importmap_tags "application" %>
+</head>
 
+<body class="bg-gray-100">
+  <%= render 'shared/header' %>
 
-  <body class="bg-gray-100">
-    <nav class="p-6 bg-white flex justify-between mb-6">
-      <ul class="flex items-center">
-        <li>
-          <a href="/" class="mr-6">Home</a>
-        </li>
-        <!-- More links here -->
-      </ul>
+    <ul class="flex items-center">
+      <li>
+        <!-- Placeholder for login/logout -->
+      </li>
+    </ul>
+  </nav>
 
-      <ul class="flex items-center">
-        <li>
-          <!-- Placeholder for login/logout -->
-        </li>
-      </ul>
-    </nav>
-
-    <%= yield %>
-
-    <footer class="p-6 bg-white mt-6">
-      <!-- Footer content here -->
-    </footer>
-  </body>
+  <%= yield %>
+  <%= render 'shared/footer' %>
+    <!-- Footer content here -->
+  </footer>
+</body>
 </html>
