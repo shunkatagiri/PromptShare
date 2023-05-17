@@ -1,9 +1,15 @@
 class TemplatesController < ApplicationController
   before_action :require_login, only: [:create]
 
+  def index
+    @templates = Template.all
+  end
+  
+
   def new
     @template = Template.new
   end
+
   
   def create
     @template = current_user.templates.build(template_params)

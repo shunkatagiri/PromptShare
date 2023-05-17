@@ -1,0 +1,10 @@
+<h1>Templates</h1>
+
+<% @templates.each do |template| %>
+  <div>
+    <h2><%= template.title %></h2>
+    <p><%= template.description %></p>
+    <p><%= template.category %></p>
+    <p>Posted by <%= template.user.username %></p>
+  </div>
+<% end %>
