@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "tops#index"
+  resources :categories, only: :show do
+    resources :templates, only: :index
+  end
+  
   resources :users, only: [:new, :create]
   resources :templates, only: [:index, :show, :create, :new]
   get 'login', to: 'user_sessions#new', as: :login
