@@ -22,7 +22,7 @@
     <!-- category - card -- start -->
     <div class="flex flex-wrap justify-around space-y-8">
       <% @categories.each do |category| %>
-        <%= render 'card', category: category %>
+        <%= render 'categories/card', category: category %>
       <% end %>
     </div>
     <!-- category - card -- end -->
