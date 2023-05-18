@@ -2,9 +2,13 @@ class TemplatesController < ApplicationController
   before_action :require_login, only: [:create]
 
   def index
-    @templates = Template.all
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @templates = @category.templates
+    else
+      @templates = Template.all
+    end
   end
-  
 
   def new
     @template = Template.new
