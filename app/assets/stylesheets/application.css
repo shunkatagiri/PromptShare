@@ -13,11 +13,6 @@
  *= require_tree .
  *= require_self
  */
- .hero-section {
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  background-image: url('/images/hero.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain; /* 画像を要素内に収まるように縮小 */
-}
+/*
+ *= require custom
+ */
