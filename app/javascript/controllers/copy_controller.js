@@ -1,4 +1,4 @@
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = [ "source" ]
@@ -6,11 +6,12 @@ export default class extends Controller {
   copy(event) {
     event.preventDefault()
 
-    const el = document.createElement('textarea')
-    el.value = this.sourceTarget.textContent
-    document.body.appendChild(el)
-    el.select()
-    document.execCommand('copy')
-    document.body.removeChild(el)
+    navigator.clipboard.writeText(this.sourceTarget.textContent).then(() => {
+      // コピー成功時の処理
+      alert('Copied!');
+    }).catch((error) => {
+      // コピー失敗時の処理
+      console.error('コピー失敗：', error);
+    });
   }
 }
