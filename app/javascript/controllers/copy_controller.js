@@ -2,10 +2,10 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["buttonText", "icon"]
+  static targets = ["buttonText", "icon", "source"]
 
   copy(event) {
-    const source = this.data.get("source");
+    const source = this.sourceTarget.textContent;
     this.copyToClipboard(source);
   }
 
