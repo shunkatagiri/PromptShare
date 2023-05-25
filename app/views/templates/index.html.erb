@@ -1,4 +1,4 @@
-<section class="h-screen px-6 py-8 bg-white">
+<section class="min-h-screen px-6 py-8 bg-white">
   <div class="flex flex-wrap justify-center">
 
     <div class="w-full mt-0">
@@ -14,23 +14,14 @@
       <h2 class="w-full mt-10 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">Category: <%= @category.name %></h2>
     <% end %>
 
-    <div class="w-full mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+     <div class="w-full mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       <% @templates.each do |template| %>
         <div class="bg-white rounded-lg shadow sm:max-w-xl transition-transform duration-500 ease-in-out hover:scale-105">
           <div class="p-6 space-y-4 sm:p-8">
-            <h3 class="text-xl font-bold"><%= template.title %></h3>
+            <h3 class="text-xl font-bold">
+              <%= link_to template.title, template_path(template), class: "text-blue-500 hover:text-blue-600" %>
+            </h3>
             <p class="mt-2 text-gray-600"><%= template.description %></p>
-            <div class="relative bg-gray-800 rounded p-6" data-controller="copy">
-              <pre class="text-white pt-6 pb-16 overflow-auto max-h-[200px]" data-target="copy.source" style="padding-top: 60px;"><%= template.content %></pre>
-              <div class="absolute top-0 right-0 left-0 bg-gray-700 p-2 flex items-center">
-                <button data-action="click->copy#copy" class="hcb-clipboard -done flex items-center text-white" data-clipboard-target="[data-hcb-clip=&quot;1&quot;]" data-clipboard-action="copy">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5" data-copy-target="icon">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-                  </svg>
-                   <span class="ml-2" data-copy-target="buttonText">Copy</span>
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       <% end %>
