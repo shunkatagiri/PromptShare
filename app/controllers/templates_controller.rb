@@ -27,6 +27,16 @@ class TemplatesController < ApplicationController
       render :new
     end
   end
+
+   def destroy
+    @template = Template.find(params[:id])
+    if @template.user == current_user
+      @template.destroy
+      redirect_to templates_path, notice: 'Template was successfully deleted.'
+    else
+      redirect_to templates_path, alert: 'You are not authorized to delete this template.'
+    end
+  end
   
   private
   
