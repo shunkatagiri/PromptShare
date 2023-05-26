@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
   
   resources :users, only: [:new, :create]
-  resources :templates, only: [:index, :show, :create, :new]
+  resources :templates, only: [:index, :show, :create, :new, :destroy]
   get 'login', to: 'user_sessions#new', as: :login
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy', as: :logout
