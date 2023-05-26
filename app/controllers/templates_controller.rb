@@ -31,7 +31,7 @@ class TemplatesController < ApplicationController
   private
   
   def template_params
-    params.require(:template).permit(:title, :description, :category_id)
+    params.require(:template).permit(:title, :description, :category_id,:content, :usage_example)
   end
 
   def require_login
