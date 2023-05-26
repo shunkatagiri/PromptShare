@@ -14,6 +14,10 @@ class TemplatesController < ApplicationController
     @template = Template.new
   end
 
+  def show
+    @template = Template.find(params[:id])
+  end
+
   
   def create
     @template = current_user.templates.build(template_params)
