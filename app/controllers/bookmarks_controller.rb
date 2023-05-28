@@ -1,12 +1,18 @@
+# app/controllers/bookmarks_controller.rb
 class BookmarksController < ApplicationController
   before_action :set_template
 
   def create
-    Bookmark.create(user_id: current_user.id, template_id: params[:template_id])
+    if Bookmark.create(user: current_user, template: @template)
+      redirect_to @template, notice: 'Bookmark was successfully created.'
+    else
+      redirect_to @template, alert: 'Unable to create bookmark.'
+    end
   end
 
   def destroy
-    Bookmark.find_by(user_id: current_user.id, template_id: params[:template_id]).destroy
+    Bookmark.find_by(user: current_user, template: @template).destroy
+    redirect_to @template, notice: 'Bookmark was successfully removed.'
   end
 
   private

@@ -1,10 +1,10 @@
 <section class="min-h-screen px-6 py-8 bg-white" data-controller="copy">
-  <!-- Category List -->
+  <!-- カテゴリー一覧 -->
   <div class="mt-4">
     <%= render partial: 'categories/category_list' %>
   </div>
 
-  <!-- Spacing for visual separation -->
+  <!-- 視覚的な区切りのためのスペース -->
   <div class="py-6"></div>
 
   <div class="flex flex-wrap justify-center">
@@ -12,38 +12,44 @@
       <h2 class="text-3xl font-semibold my-6 text-blue-700"><%= @template.title %></h2>
       <p class="mt-2 text-gray-600 text-lg"><%= @template.description %></p>
 
-      <!-- Change background color of header to distinguish it from content -->
+      <!-- コンテンツと区別するためにヘッダーの背景色を変更 -->
       <div class="relative rounded-lg overflow-hidden">
         <div class="absolute top-0 right-0 left-0 bg-gray-700 p-2 flex items-center justify-between">
-          <!-- Highlight important information -->
+          <!-- 重要な情報を強調 -->
           <div class="text-gray-100 text-lg font-semibold">GPT-4推奨 <%= @template.importance %></div>
-          <!-- Animation effect for copy button -->
+          
+          <!-- ブックマークボタン -->
+          <%= button_to bookmarks_toggle_path(@template), method: :post, remote: true, class: "btn btn-primary ml-2" do %>
+            <i class="fa <%= bookmarked?(@template) ? 'fa-bookmark' : 'fa-bookmark-o' %>"></i>
+          <% end %>
+
+          <!-- コピーボタンのアニメーション効果 -->
           <button data-action="click->copy#copy" class="hcb-clipboard -done flex items-center text-white" data-clipboard-target="[data-hcb-clip=&quot;1&quot;]" data-clipboard-action="copy">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5" data-copy-target="icon">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
             </svg>
-            <span class="ml-2" data-copy-target="buttonText">Copy to Clipboard</span>
+            <span class="ml-2" data-copy-target="buttonText">クリップボードにコピー</span>
           </button>
         </div>
         <div class="bg-gray-800 p-6">
-          <!-- Additional padding for readability -->
+          <!-- 読みやすさのための追加のパディング -->
           <pre class="text-white pt-12 pb-16 overflow-auto" data-target="copy.source"><%= @template.content %></pre>
         </div>
       </div>
-      <!-- Fullscreen and Delete mode switch -->
+      <!-- フルスクリーンモードと削除モードの切り替え -->
       <div class="flex justify-center mt-6 space-x-4">
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Enter Fullscreen Mode
+          フルスクリーンモードに入る
         </button>
 
-        <!-- Delete button -->
+        <!-- 削除ボタン -->
         <% if @template.user == current_user %>
-         <%= button_to 'Delete', template_path(@template), method: :delete, data: { turbo_confirm: '本当に削除しますか?' }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+         <%= button_to '削除', template_path(@template), method: :delete, data: { turbo_confirm: '本当に削除しますか?' }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
         <% end %>
       </div>
     </div>
   </div>
   
-  <!-- Spacing for visual separation -->
+  <!-- 視覚的な区切りのためのスペース -->
   <div class="py-6"></div>
 </section>
