@@ -1,0 +1,3 @@
+<%= button_to template_bookmarks_path(@template), method: :post, class: "btn btn-secondary ml-2", data: { turbo_frame: dom_id(@template, :bookmark) } do %>
+  <i class="fa fa-bookmark-o"></i>
+<% end %>
