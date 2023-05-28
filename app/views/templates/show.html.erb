@@ -19,10 +19,16 @@
           <div class="text-gray-100 text-lg font-semibold">GPT-4推奨 <%= @template.importance %></div>
           
           <!-- ブックマークボタン -->
-          <% bookmarked = Bookmark.find_by(user: current_user, template: @template) %>
-          <%= button_to bookmarks_toggle_path(@template), method: :post, remote: true, class: "btn #{bookmarked ? 'btn-primary' : 'btn-secondary'} ml-2" do %>
-            <i class="fa <%= bookmarked ? 'fa-bookmark' : 'fa-bookmark-o' %>"></i>
+          <% if @template.bookmarked_by?(current_user) %>
+            <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
+              <%= render 'bookmarks/unbookmark', bookmark: current_user.bookmarks.find_by(template: @template) %>
+            <% end %>
+          <% else %>
+            <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
+              <%= render 'bookmarks/bookmark', template: @template %>
+            <% end %>
           <% end %>
+
 
           <!-- コピーボタンのアニメーション効果 -->
           <button data-action="click->copy#copy" class="hcb-clipboard -done flex items-center text-white" data-clipboard-target="[data-hcb-clip=&quot;1&quot;]" data-clipboard-action="copy">
