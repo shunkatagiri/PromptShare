@@ -1,23 +1,25 @@
-# app/controllers/bookmarks_controller.rb
 class BookmarksController < ApplicationController
   before_action :set_template
 
   def create
-    if Bookmark.create(user: current_user, template: @template)
-      redirect_to @template, notice: 'Bookmark was successfully created.'
+    if @template.bookmarks.where(user_id: current_user.id).exists?
+      flash[:notice] = '既にブックマークしています'
     else
-      redirect_to @template, alert: 'Unable to create bookmark.'
+      @template.bookmarks.create(user_id: current_user.id)
+      flash[:notice] = 'ブックマークしました'
     end
+    redirect_to @template
   end
 
   def destroy
-    Bookmark.find_by(user: current_user, template: @template).destroy
-    redirect_to @template, notice: 'Bookmark was successfully removed.'
+    @bookmark = @template.bookmarks.find_by(user_id: current_user.id)
+    @bookmark.destroy
+    flash[:notice] = 'ブックマークを解除しました'
+    redirect_to @template
   end
 
   private
-
-  def set_template
-    @template = Template.find(params[:template_id])
-  end
+    def set_template
+      @template = Template.find(params[:template_id])
+    end
 end
