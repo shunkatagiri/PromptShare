@@ -19,8 +19,9 @@
           <div class="text-gray-100 text-lg font-semibold">GPT-4推奨 <%= @template.importance %></div>
           
           <!-- ブックマークボタン -->
-          <%= button_to bookmarks_toggle_path(@template), method: :post, remote: true, class: "btn btn-primary ml-2" do %>
-            <i class="fa <%= bookmarked?(@template) ? 'fa-bookmark' : 'fa-bookmark-o' %>"></i>
+          <% bookmarked = Bookmark.find_by(user: current_user, template: @template) %>
+          <%= button_to bookmarks_toggle_path(@template), method: :post, remote: true, class: "btn #{bookmarked ? 'btn-primary' : 'btn-secondary'} ml-2" do %>
+            <i class="fa <%= bookmarked ? 'fa-bookmark' : 'fa-bookmark-o' %>"></i>
           <% end %>
 
           <!-- コピーボタンのアニメーション効果 -->
