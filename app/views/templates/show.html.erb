@@ -21,7 +21,7 @@
           <!-- ブックマークボタン -->
           <% if @template.bookmarked_by?(current_user) %>
             <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
-              <%= render 'bookmarks/unbookmark', bookmark: current_user.bookmarks.find_by(template: @template) %>
+              <%= render 'bookmarks/unbookmark', bookmark: current_user.bookmarks.find_by(template: @template) || Bookmark.new %>
             <% end %>
           <% else %>
             <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
@@ -29,13 +29,12 @@
             <% end %>
           <% end %>
 
-
           <!-- コピーボタンのアニメーション効果 -->
           <button data-action="click->copy#copy" class="hcb-clipboard -done flex items-center text-white" data-clipboard-target="[data-hcb-clip=&quot;1&quot;]" data-clipboard-action="copy">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5" data-copy-target="icon">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
             </svg>
-            <span class="ml-2" data-copy-target="buttonText">クリップボードにコピー</span>
+            <span class="ml-2" data-copy-target="buttonText">Copy code</span>
           </button>
         </div>
         <div class="bg-gray-800 p-6">
