@@ -1,3 +1,4 @@
+
 <section class="min-h-screen px-6 py-8 bg-white" data-controller="copy">
   <!-- カテゴリー一覧 -->
   <div class="mt-4">
@@ -34,15 +35,16 @@
       <!-- 削除ボタンとブックマークボタン -->
       <div class="flex justify-center mt-6 space-x-4">
         <!-- ブックマークボタン -->
-        <% if @template.bookmarked_by?(current_user) %>
+        <% if @bookmark %>
           <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
-            <%= render 'bookmarks/unbookmark', bookmark: current_user.bookmarks.find_by(template: @template) || Bookmark.new %>
+            <%= render 'bookmarks/unbookmark', bookmark: @bookmark %>
           <% end %>
         <% else %>
           <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
             <%= render 'bookmarks/bookmark', template: @template %>
           <% end %>
         <% end %>
+
 
         <!-- 削除ボタン -->
       <% if @template.user == current_user %>

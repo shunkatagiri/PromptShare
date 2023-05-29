@@ -1,40 +1,28 @@
 class BookmarksController < ApplicationController
-  include ActionView::RecordIdentifier 
-  before_action :set_template
-  before_action :set_bookmark, only: :destroy
-
+  before_action :require_login, only: [:create]
   def create
-    @bookmark = @template.bookmarks.new(user_id: current_user.id)
+    @template = Template.find(params[:template_id])
+    @bookmark = current_user.bookmarks.build(template: @template)
     if @bookmark.save
-      respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id(@template, :bookmark), partial: 'bookmarks/unbookmark', locals: { template: @template }) }
-        format.js { render :js => "window.location.reload();" }
-      end
+      redirect_to template_path(@template), notice: 'ブックマークしました'
     else
-      respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id(@template, :bookmark), partial: 'bookmarks/bookmark', locals: { template: @template, error: '既にブックマークしています' }) }
-      end
+      redirect_to template_path(@template), alert: 'ブックマークに失敗しました'
     end
   end
 
   def destroy
+    @template = Template.find(params[:template_id])
+    @bookmark = current_user.bookmarks.find_by(template_id: @template.id)
     @bookmark.destroy
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id(@template, :bookmark), partial: 'bookmarks/bookmark', locals: { template: @template }) }
-      format.js { render :js => "window.location.reload();" }
-    end
+    redirect_to template_path(@template), notice: 'ブックマークを解除しました'
   end
 
   private
-    def set_template
-      @template = Template.find(params[:template_id])
-    end
 
-    def set_bookmark
-      @bookmark = @template.bookmarks.find_by(user_id: current_user.id)
-      unless @bookmark
-        flash[:notice] = 'ブックマークが存在しません'
-        redirect_to @template
-      end
+  def require_login
+    unless logged_in?  # logged_in?はユーザーがログインしているかどうかを判定するメソッド
+      flash[:error] = "ログインが必要です"
+      redirect_to login_path  # ログイン画面にリダイレクト
     end
+  end
 end

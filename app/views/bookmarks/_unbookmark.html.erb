@@ -1,4 +1,4 @@
-<%= button_to template_bookmark_path(@template, bookmark), method: :delete, class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 ml-2 rounded", data: { turbo_frame: dom_id(@template, :bookmark) } do %>
+<%= button_to template_bookmark_path(@template, @bookmark), method: :delete, class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 ml-2 rounded", data: { turbo_frame: dom_id(@template, :bookmark) } do %>
   <% if @template.bookmarked_by?(current_user) %>
     <i class="fas fa-bookmark" style="color: #0355e2;"></i>
   <% else %>
