@@ -35,7 +35,7 @@
       <!-- 削除ボタンとブックマークボタン -->
       <div class="flex justify-center mt-6 space-x-4">
       <!-- いいねボタン -->
-        <% if user_signed_in? %>
+        <% if logged_in? %>
           <%= turbo_frame_tag dom_id(@template, :like) do %>
             <% if @template.liked_by?(current_user) %>
               <%= render 'likes/unlike', template: @template %>
@@ -44,6 +44,7 @@
             <% end %>
           <% end %>
         <% end %>
+
 
         <!-- ブックマークボタン -->
         <% if @bookmark %>

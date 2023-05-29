@@ -1,5 +1,5 @@
 class LikesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :require_login, only: [:create, :destroy]
   
   def create
     @like = current_user.likes.create(template_id: params[:template_id])
