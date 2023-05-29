@@ -10,4 +10,9 @@ class Template < ApplicationRecord
   def bookmarked_by?(user)
     bookmarks.where(user_id: user.id).exists?
   end
+
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
+  end
+
 end
