@@ -18,17 +18,6 @@
           <!-- 重要な情報を強調 -->
           <div class="text-gray-100 text-lg font-semibold">GPT-4推奨 <%= @template.importance %></div>
           
-          <!-- ブックマークボタン -->
-          <% if @template.bookmarked_by?(current_user) %>
-            <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
-              <%= render 'bookmarks/unbookmark', bookmark: current_user.bookmarks.find_by(template: @template) || Bookmark.new %>
-            <% end %>
-          <% else %>
-            <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
-              <%= render 'bookmarks/bookmark', template: @template %>
-            <% end %>
-          <% end %>
-
           <!-- コピーボタンのアニメーション効果 -->
           <button data-action="click->copy#copy" class="hcb-clipboard -done flex items-center text-white" data-clipboard-target="[data-hcb-clip=&quot;1&quot;]" data-clipboard-action="copy">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5" data-copy-target="icon">
@@ -42,19 +31,26 @@
           <pre class="text-white pt-12 pb-16 overflow-auto" data-target="copy.source"><%= @template.content %></pre>
         </div>
       </div>
-      <!-- フルスクリーンモードと削除モードの切り替え -->
+      <!-- 削除ボタンとブックマークボタン -->
       <div class="flex justify-center mt-6 space-x-4">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          フルスクリーンモードに入る
-        </button>
+        <!-- ブックマークボタン -->
+        <% if @template.bookmarked_by?(current_user) %>
+          <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
+            <%= render 'bookmarks/unbookmark', bookmark: current_user.bookmarks.find_by(template: @template) || Bookmark.new %>
+          <% end %>
+        <% else %>
+          <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
+            <%= render 'bookmarks/bookmark', template: @template %>
+          <% end %>
+        <% end %>
 
         <!-- 削除ボタン -->
-        <% if @template.user == current_user %>
-         <%= button_to '削除', template_path(@template), method: :delete, data: { turbo_confirm: '本当に削除しますか?' }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
+      <% if @template.user == current_user %>
+  <%= button_to template_path(@template), method: :delete, data: { turbo_confirm: '本当に削除しますか?' }, class: "bg-gray-500 hover:bg-gray-700  text-white font-bold py-2 px-4 rounded" do %>
+    <i class="fa fa-trash"></i>
+  <% end %>
+<% end %>
+
   
   <!-- 視覚的な区切りのためのスペース -->
   <div class="py-6"></div>
