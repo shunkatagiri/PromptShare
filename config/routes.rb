@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   resources :templates, only: [:index, :show, :create, :new, :destroy] do
     resources :bookmarks, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy] # 追加
   end
   get 'login', to: 'user_sessions#new', as: :login
   post 'login', to: 'user_sessions#create'
