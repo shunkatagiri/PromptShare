@@ -7,7 +7,8 @@ class BookmarksController < ApplicationController
     @bookmark = @template.bookmarks.new(user_id: current_user.id)
     if @bookmark.save
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id(@template, :bookmark), partial: 'bookmarks/unbookmark', locals: { bookmark: @bookmark }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id(@template, :bookmark), partial: 'bookmarks/unbookmark', locals: { template: @template }) }
+        format.js { render :js => "window.location.reload();" }
       end
     else
       respond_to do |format|
@@ -20,6 +21,7 @@ class BookmarksController < ApplicationController
     @bookmark.destroy
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id(@template, :bookmark), partial: 'bookmarks/bookmark', locals: { template: @template }) }
+      format.js { render :js => "window.location.reload();" }
     end
   end
 
