@@ -22,6 +22,8 @@
               <%= template.title %>
             </h3>
             <p class="mt-2 text-gray-600"><%= template.description %></p>
+            <!-- 「いいね数」を表示 -->
+            <p><%= template.likes.count %> likes</p>
           </div>
         <% end %>
       <% end %>
