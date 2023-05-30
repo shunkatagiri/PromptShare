@@ -1,3 +1,2 @@
-<%= turbo_stream.replace dom_id(@template, :like) do %>
-  <%= render 'likes/like', template: @template %>
-<% end %>
+<%= turbo_stream.remove dom_id(@like) %>
+<%= render 'likes/like', template: @template %>

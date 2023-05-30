@@ -17,6 +17,7 @@ class TemplatesController < ApplicationController
   def show
     @template = Template.find(params[:id])
     @bookmark = @template.bookmarks.find_by(user_id: current_user.id)
+    @like = @template.likes.find_by(user: current_user)
   end
 
   
