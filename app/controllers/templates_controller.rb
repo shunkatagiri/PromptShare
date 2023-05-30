@@ -3,15 +3,20 @@ class TemplatesController < ApplicationController
   before_action :require_login, only: [:create]
 
   def index
-    @category = Category.find(params[:category_id]) if params[:category_id]
-    @templates = if params[:sort] == 'most_liked'
-                  Template.order('likes_count DESC')
-                else
-                  Template.order('created_at DESC')
-                end
-    @templates = @templates.where(category: @category) if @category
-  end
+    @category = Category.find_by(id: params[:category_id])
 
+    if @category
+      @templates = @category.templates
+    else
+      @templates = Template.all
+    end
+
+    if params[:order] == 'most_liked'
+      @templates = @templates.order(likes_count: :desc)
+    else
+      @templates = @templates.order(created_at: :desc)
+    end
+  end
 
   def new
     @template = Template.new
