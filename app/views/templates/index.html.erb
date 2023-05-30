@@ -14,6 +14,15 @@
       <h2 class="w-full mt-10 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">Category: <%= @category.name %></h2>
     <% end %>
 
+    <!-- 新しいソートオプションのドロップダウンメニューを追加 -->
+    <div class="mt-5">
+      <%= form_with url: templates_path, method: :get, local: true do |f| %>
+        <%= f.hidden_field :category_id, value: @category&.id %>
+        <%= f.select :order, options_for_select([['Newest', 'newest'], ['Most Liked', 'most_liked']], selected: params[:order]), {}, { onchange: 'this.form.submit();' } %>
+      <% end %>
+    </div>
+
+
     <div class="w-full mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       <% @templates.each do |template| %>
         <%= link_to template_path(template), class: "bg-white rounded-lg shadow sm:max-w-xl transition-transform duration-500 ease-in-out hover:scale-105", style: "text-decoration: none;" do %>
@@ -23,7 +32,7 @@
             </h3>
             <p class="mt-2 text-gray-600"><%= template.description %></p>
             <!-- 「いいね数」を表示 -->
-            <p><%= template.likes.count %> likes</p>
+            <p><%= template.likes_count %> likes</p>
           </div>
         <% end %>
       <% end %>
