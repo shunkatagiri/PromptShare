@@ -38,7 +38,7 @@
         <% if logged_in? %>
           <%= turbo_frame_tag dom_id(@template, :like) do %>
             <% if @template.liked_by?(current_user) %>
-              <%= render 'likes/unlike', template: @template %>
+              <%= render 'likes/unlike', template: @template, like: @like %>
             <% else %>
               <%= render 'likes/like', template: @template %>
             <% end %>
