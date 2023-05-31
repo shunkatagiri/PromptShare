@@ -1,4 +1,5 @@
-<%# app/views/_header.html.erb %>
+<%# app/views/layouts/_header.html.erb %>
+
 <div class="w-full max-w-7xl">
   <div class="flex flex-col max-w-screen-xl p-5 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8"
        data-controller="menu">
@@ -13,11 +14,12 @@
          data-menu-target="nav">
       <a class="px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline" href="#">プロンプトとは？</a>
       <%= link_to '投稿', new_template_path ,class: 'px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline'%>
-      <%= link_to 'ログアウト', logout_path, method: :delete, class: 'px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline', data: { turbo_method: :delete } %>
 
-      
+      <% if current_user %> <!-- 追加: ログインしている場合 -->
+        <%= link_to 'ログアウト', logout_path, method: :delete, class: 'px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline', data: { turbo_method: :delete } %>
+      <% end %>
 
-      <div class="relative" data-controller="dropdown">
+      <div class="relative flex-grow" data-controller="dropdown"> <!-- 修正: flex-growを追加 -->
         <button class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm text-left text-gray-500 md:w-auto md:inline md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline"
                 data-action="click->dropdown#toggle">
           <!-- Your button content here -->
@@ -29,9 +31,18 @@
         </div>
       </div>
 
-      <div class="inline-flex items-center gap-2 list-none lg:ml-auto">
-        <%= link_to 'Log in', login_path, class: 'items-center block px-10 py-2.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500' %>
-        <%= link_to 'Sign up', new_user_path, class: 'items-center block px-10 py-3 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500' %>
+      <div class="inline-flex items-center gap-2 list-none"> <!-- 修正: lg:ml-autoを削除 -->
+        <% unless current_user %> <!-- 追加: ログインしていない場合 -->
+          <%= link_to 'ログイン', login_path, class: 'items-center block px-10 py-2.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500' %>
+          <%= link_to '新規登録', new_user_path, class: 'items-center block px-10 py-3 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500' %>
+        <% end %>
+        
+        <!-- 追加: ログインしている場合のみユーザーアイコンを表示 -->
+        <% if current_user %>
+          <%= link_to user_profile_path(current_user), class: 'items-center block px-10 py-2.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500' do %>
+            <i class="fas fa-user"></i> <!-- ユーザーアイコンを表示 -->
+          <% end %>
+        <% end %>
       </div>
     </nav>
   </div>
