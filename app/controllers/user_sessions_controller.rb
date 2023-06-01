@@ -7,8 +7,8 @@ class UserSessionsController < ApplicationController
     if @user
       redirect_back_or_to  root_path, notice: 'Login successful.'
     else
-      flash.now[:alert] = 'Login failed.'
-      render action: 'new'
+      flash[:alert] = 'Login failed.'
+      redirect_to action: 'new'
     end
   end
 
