@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :bookmarks, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy] # 追加
   end
+  resources :bookmarks, only: [:index]
+
   get '/profile/:id', to: 'users#profile', as: :user_profile
   get 'login', to: 'user_sessions#new', as: :login
   post 'login', to: 'user_sessions#create'
