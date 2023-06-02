@@ -1,0 +1,8 @@
+<h1>Your Bookmarks</h1>
+
+<% @bookmarks.each do |bookmark| %>
+  <div>
+    <h2><%= link_to bookmark.template.title, template_path(bookmark.template) %></h2>
+    <p><%= bookmark.template.description %></p>
+  </div>
+<% end %>
