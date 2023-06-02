@@ -5,6 +5,7 @@ export default class extends Controller {
 
   connect() {
     console.log("Connected to dropdown menu controller.")
+    this.menuTarget.classList.add('hidden') // 追加
   }
 
   toggle() {

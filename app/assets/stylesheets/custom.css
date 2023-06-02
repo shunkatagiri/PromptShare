@@ -21,6 +21,10 @@
   background-size: contain; /* 画像を要素内に収まるように縮小 */
 }
 
+.hidden {
+  display: none;
+}
+
 .dropdown-content {
   position: absolute;
   top: 100%; /* メニューボタンの下に配置 */
@@ -29,10 +33,4 @@
   background-color: white;
   z-index: 1000;
   overflow: auto;
-  transform: translateY(-100%); /* 最初は非表示 */
-  transition: transform 0.3s ease-in-out;
-}
-
-.dropdown-content.visible {
-  transform: translateY(0); /* 表示時に下にスライド */
 }
