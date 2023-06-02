@@ -20,3 +20,20 @@
   background-position: center;
   background-size: contain; /* 画像を要素内に収まるように縮小 */
 }
+
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  background-color: white;
+  z-index: 1000;
+  overflow: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.visible {
+  transform: translateX(0);
+}
