@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :templates, only: :index
   end
   
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
   resources :templates, only: [:index, :show, :create, :new, :destroy] do
     resources :bookmarks, only: [:create, :destroy, :index]
     resources :likes, only: [:create, :destroy] # 追加
