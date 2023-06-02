@@ -1,5 +1,10 @@
 class BookmarksController < ApplicationController
   before_action :require_login, only: [:create]
+  
+  def index
+    @bookmarks = current_user.bookmarks.includes(:template)
+  end
+
   def create
     @template = Template.find(params[:template_id])
     @bookmark = current_user.bookmarks.build(template: @template)
