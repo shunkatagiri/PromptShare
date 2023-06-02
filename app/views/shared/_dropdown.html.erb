@@ -3,7 +3,7 @@
     <p class="text-sm leading-5"><%= current_user.email %></p>
   </div>
   <div class="py-1">
-    <a href="<%= user_profile_path(current_user) %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
+    <a href="<%= edit_user_path(current_user) %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
       User Profile
     </a>
     <a href="<%= bookmarks_path(current_user) %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
