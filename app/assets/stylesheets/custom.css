@@ -21,19 +21,18 @@
   background-size: contain; /* 画像を要素内に収まるように縮小 */
 }
 
-.sidebar {
-  position: fixed;
+.dropdown-content {
+  position: absolute;
+  top: 100%; /* メニューボタンの下に配置 */
   right: 0;
-  top: 0;
-  bottom: 0;
   width: 250px;
   background-color: white;
   z-index: 1000;
   overflow: auto;
-  transform: translateX(100%);
+  transform: translateY(-100%); /* 最初は非表示 */
   transition: transform 0.3s ease-in-out;
 }
 
-.sidebar.visible {
-  transform: translateX(0);
+.dropdown-content.visible {
+  transform: translateY(0); /* 表示時に下にスライド */
 }
