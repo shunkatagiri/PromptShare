@@ -1,0 +1,13 @@
+<div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100" data-controller="dropdown">
+  <div class="px-4 py-3">
+    <p class="text-sm leading-5"><%= current_user.email %></p>
+  </div>
+  <div class="py-1">
+    <a href="<%= user_profile_path(current_user) %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
+      User Profile
+    </a>
+    <a href="<%= bookmarks_path(current_user) %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
+      Bookmarks
+    </a>
+  </div>
+</div>
