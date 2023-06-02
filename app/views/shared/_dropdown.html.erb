@@ -9,6 +9,6 @@
     <a href="<%= bookmarks_path(current_user) %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150">
       Bookmarks
     </a>
+    <%= button_to 'Log out', logout_path, method: :delete, class: 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150' %>
   </div>
 </div>
-    
