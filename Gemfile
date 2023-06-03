@@ -76,3 +76,4 @@ gem 'faker'
 
 gem 'jsbundling-rails'
 gem 'importmap-rails'
+gem 'kaminari'
