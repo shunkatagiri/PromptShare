@@ -1,3 +1,5 @@
+<%# app/views/bookmarks/index.html.erb %>
+
 <div class="min-h-screen px-6 py-8 bg-white">
   <div class="flex flex-wrap justify-center">
 
@@ -6,21 +8,24 @@
       ブックマーク
     </h2>
 
+    <% @category_bookmarks.each do |category, bookmarks| %>
+      <h3 class="text-xl font-bold text-blue-500 my-4"><%= category.name %> (<%= bookmarks.count %> bookmarks)</h3>
 
-    <div class="w-full mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
-      <% @bookmarks.each do |bookmark| %>
-        <%= link_to template_path(bookmark.template), class: "bg-white rounded-lg shadow sm:max-w-xl transition-transform duration-500 ease-in-out hover:scale-105", style: "text-decoration: none;" do %>
-          <div class="p-6 space-y-4 sm:p-8">
-            <h3 class="text-xl font-bold text-blue-500 hover:text-blue-600">
-              <%= bookmark.template.title %>
-            </h3>
-            <p class="mt-2 text-gray-600"><%= bookmark.template.description %></p>
-            <!-- 「いいね数」を表示 -->
-            <p><%= bookmark.template.likes_count %> likes</p>
-          </div>
+      <div class="w-full mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
+        <% bookmarks.each do |bookmark| %>
+          <%= link_to template_path(bookmark.template), class: "bg-white rounded-lg shadow sm:max-w-xl transition-transform duration-500 ease-in-out hover:scale-105", style: "text-decoration: none;" do %>
+            <div class="p-6 space-y-4 sm:p-8">
+              <h3 class="text-xl font-bold text-blue-500 hover:text-blue-600">
+                <%= bookmark.template.title %>
+              </h3>
+              <p class="mt-2 text-gray-600"><%= bookmark.template.description %></p>
+              <!-- 「いいね数」を表示 -->
+              <p><%= bookmark.template.likes_count %> likes</p>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
-     <%= paginate @bookmarks %>
+      </div>
+    <% end %>
+
   </div>
 </div>
