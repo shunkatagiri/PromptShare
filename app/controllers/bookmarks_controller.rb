@@ -2,8 +2,8 @@ class BookmarksController < ApplicationController
   before_action :require_login, only: [:create]
   #ページネーションを実装するために追加
   def index
-    @category_bookmarks = current_user.bookmarks.includes(template: :category).group_by { |bookmark| bookmark.template.category }.sort_by { |category, bookmarks| -bookmarks.count }
-  end
+  @category_bookmarks = current_user.bookmarks.includes(template: :category).group_by { |bookmark| bookmark.template.category }.sort_by { |category, bookmarks| -bookmarks.count }
+end
   
   def create
     @template = Template.find(params[:template_id])
