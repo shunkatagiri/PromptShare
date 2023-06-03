@@ -2,7 +2,7 @@ class BookmarksController < ApplicationController
   before_action :require_login, only: [:create]
   #ページネーションを実装するために追加
   def index
-    @bookmarks = current_user.bookmarks.includes(:template).page(params[:page])
+    @bookmarks = current_user.bookmarks.includes(:template).page(params[:page]).per(6)
   end
 
   def create
