@@ -1,7 +1,7 @@
 # app/controllers/templates_controller.rb
 class TemplatesController < ApplicationController
   before_action :require_login, only: [:create]
-
+  #ページネーションを実装するために追加
   def index
     @category = Category.find(params[:category_id]) if params[:category_id].present?
   
@@ -17,6 +17,9 @@ class TemplatesController < ApplicationController
     else
       @templates = @templates.order(created_at: :desc)
     end
+
+    # ページネーションを適用する処理を最後に移動
+    @templates = @templates.page(params[:page]).per(15)
   
     respond_to do |format|
       format.turbo_stream
