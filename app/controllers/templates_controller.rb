@@ -19,7 +19,7 @@ class TemplatesController < ApplicationController
     end
 
     # ページネーションを適用する処理を最後に移動
-    @templates = @templates.page(params[:page]).per(3)
+    @templates = @templates.page(params[:page]).per(18)
   
     respond_to do |format|
       format.turbo_stream
