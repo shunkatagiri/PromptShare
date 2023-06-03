@@ -1,0 +1,30 @@
+<%= paginator.render do -%>
+  <div class="mt-6 flex items-center justify-between">
+    <div class="flex-1 flex justify-between sm:hidden">
+      <%= previous_page_link raw('<i class="fas fa-chevron-left"></i>'), class: 'relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50' unless current_page.first? %>
+      <%= next_page_link raw('<i class="fas fa-chevron-right"></i>'), class: 'ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50' unless current_page.last? %>
+    </div>
+    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+      <div>
+        <p class="text-sm text-gray-700">
+          <%= page_entries_info %>
+        </p>
+      </div>
+      <div>
+        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+          <%= first_page_link unless current_page.first? %>
+          <%= prev_page_link unless current_page.first? %>
+          <% each_page do |page| -%>
+            <% if page.left_outer? || page.right_outer? || page.inside_window? -%>
+              <%= page_link page, class: "relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50" %>
+            <% elsif !page.was_truncated? -%>
+              <%= page_gap %>
+            <% end -%>
+          <% end -%>
+          <%= next_page_link unless current_page.last? %>
+          <%= last_page_link unless current_page.last? %>
+        </nav>
+      </div>
+    </div>
+  </div>
+<% end -%>
