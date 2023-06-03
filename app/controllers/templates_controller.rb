@@ -29,6 +29,10 @@ class TemplatesController < ApplicationController
     end
   end
 
+  def search
+    @results = @p.result.includes(:category)
+  end
+  
   def new
     @template = Template.new
   end
@@ -66,6 +70,9 @@ class TemplatesController < ApplicationController
     params.require(:template).permit(:title, :description, :category_id,:content, :usage_example)
   end
 
+  def search_templates
+    @p = Template.ransack(params[:q])  # 検索オブジェクトを生成
+  end
 
   def require_login
     unless logged_in?  # logged_in?はユーザーがログインしているかどうかを判定するメソッド
