@@ -1,7 +1,9 @@
 # app/controllers/templates_controller.rb
 class TemplatesController < ApplicationController
   before_action :require_login, only: [:create]
-  #ページネーションを実装するために追加 
+  before_action :search_templates, only: [:index, :search]
+
+  # ページネーションを実装するために追加 
   def index
     @category = Category.find(params[:category_id]) if params[:category_id].present?
   
@@ -26,7 +28,6 @@ class TemplatesController < ApplicationController
       format.html
     end
   end
-  
 
   def new
     @template = Template.new
@@ -65,11 +66,11 @@ class TemplatesController < ApplicationController
     params.require(:template).permit(:title, :description, :category_id,:content, :usage_example)
   end
 
+
   def require_login
     unless logged_in?  # logged_in?はユーザーがログインしているかどうかを判定するメソッド
       flash[:error] = "ログインが必要です"
       redirect_to login_path  # ログイン画面にリダイレクト
     end
   end
-
 end
