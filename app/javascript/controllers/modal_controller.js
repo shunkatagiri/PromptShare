@@ -3,20 +3,19 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
+  static targets = ["modal"]
+
   connect() {
     console.log("Modal controller connected")
   }
 
   show(event) {
     event.preventDefault();
-    fetch(event.currentTarget.href, { headers: { accept: "text/html" } })
-      .then(response => response.text())
-      .then(data => {
-        document.querySelector("#modal").innerHTML = data;
-      });
+    this.modalTarget.innerHTML = '<div>モーダルの中身</div>';
   }
 
   close() {
-    document.querySelector("#modal").innerHTML = '';
+    this.modalTarget.innerHTML = '';
   }
 }
+  
