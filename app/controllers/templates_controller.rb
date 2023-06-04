@@ -1,7 +1,6 @@
 # app/controllers/templates_controller.rb
 class TemplatesController < ApplicationController
   before_action :require_login, only: [:create]
-  before_action :search_templates, only: [:index, :search]
 
   def index
     @category = Category.find(params[:category_id]) if params[:category_id].present?
@@ -26,9 +25,8 @@ class TemplatesController < ApplicationController
       format.html
     end
   end
-  
-  def search_templates
-    @q = Template.ransack(params[:q])
+
+  def search
     @templates = @q.result(distinct: true).page(params[:page]).per(18)
   end
   
@@ -65,10 +63,6 @@ class TemplatesController < ApplicationController
   
   def template_params
     params.require(:template).permit(:title, :description, :category_id,:content, :usage_example)
-  end
-
-  def search_templates
-    @q = Template.ransack(params[:q])  # 検索オブジェクトを生成
   end
 
   def require_login
