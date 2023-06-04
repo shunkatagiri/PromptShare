@@ -1,21 +1,21 @@
 // app/javascript/controllers/modal_controller.js
-
-import { Controller } from "stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["modal"]
+  static targets = ["content", "overlay"]
 
   connect() {
     console.log("Modal controller connected")
   }
 
-  show(event) {
-    event.preventDefault();
-    this.modalTarget.innerHTML = '<div>モーダルの中身</div>';
+  open(event) {
+    event.preventDefault()
+    this.contentTarget.style.display = "block"
+    this.overlayTarget.style.display = "block"
   }
 
   close() {
-    this.modalTarget.innerHTML = '';
+    this.contentTarget.style.display = "none"
+    this.overlayTarget.style.display = "none"
   }
 }
-  

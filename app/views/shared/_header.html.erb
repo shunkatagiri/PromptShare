@@ -1,3 +1,4 @@
+<!--app/views/shared/_header.html.erb -->
 <div class="w-full max-w-7xl bg-gray-100" data-controller="header">
   <div class="flex flex-col max-w-screen-xl p-5 mx-auto justify-between md:items-center md:flex-row md:px-6 lg:px-8" data-controller="menu">
     <div class="flex justify-between w-full lg:w-auto">
@@ -10,7 +11,7 @@
 
       <nav class="flex items-center flex-grow pb-4 md:flex md:justify-start md:flex-row lg:border-l-2 lg:pl-2" data-menu-target="nav">
         <!-- app/views/layouts/_header.html.erb -->
-        <a class="px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline" data-controller="modal" data-action="click->modal#show" href="#">プロンプトとは？</a>
+        <a class="px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline" data-controller="modal" data-action="click->modal#open" href="#">プロンプトとは？</a>
         <%= link_to '投稿', new_template_path ,class: 'px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline lg:border-r-2'%>
       </nav>
     </div>
