@@ -14,4 +14,8 @@ class Template < ApplicationRecord
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ['title', 'content'] # ここに検索可能な属性を追加します
+  end
 end
