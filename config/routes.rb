@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/profile/:id', to: 'users#profile', as: :user_profile
   get 'login', to: 'user_sessions#new', as: :login
   get 'modal/show', to: 'modal#show', as: :modal_show
+  get '/about', to: 'about#show', as: 'about'
   post 'login', to: 'user_sessions#create'
   delete 'logout', to: 'user_sessions#destroy', as: :logout
   
