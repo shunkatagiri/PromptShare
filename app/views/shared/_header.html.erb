@@ -15,9 +15,9 @@
     </div>
     
     <div class="flex justify-center w-full lg:w-auto">
-      <%= search_form_for @q, url: search_path, method: :get do |f| %>
-        <%= f.search_field :name_or_content_cont, class: "px-3 py-2 mt-2 text-sm text-gray-500 md:mt-0", placeholder: "Search Templates..." %>
-        <%= f.submit '検索', class: "ml-2 px-3 py-2 mt-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:shadow-outline" %>
+      <%= search_form_for @q, url: search_templates_path, class: "md:flex md:items-center md:justify-start md:flex-row lg:border-l-2 lg:pl-2" do |f| %>
+        <%= f.search_field :title_or_content_cont, placeholder: "テンプレートを検索", class: "px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline" %>
+        <%= f.submit "検索", class: "px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline" %>
       <% end %>
     </div>
 

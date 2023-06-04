@@ -3,7 +3,6 @@ class TemplatesController < ApplicationController
   before_action :require_login, only: [:create]
   before_action :search_templates, only: [:index, :search]
 
-  # ページネーションを実装するために追加 
   def index
     @category = Category.find(params[:category_id]) if params[:category_id].present?
   
@@ -20,7 +19,6 @@ class TemplatesController < ApplicationController
       @templates = @templates.order(created_at: :desc)
     end
 
-    # ページネーションを適用する処理を最後に移動
     @templates = @templates.page(params[:page]).per(18)
   
     respond_to do |format|
@@ -28,9 +26,10 @@ class TemplatesController < ApplicationController
       format.html
     end
   end
-
-  def search
-    @results = @p.result.includes(:category)
+  
+  def search_templates
+    @q = Template.ransack(params[:q])
+    @templates = @q.result(distinct: true).page(params[:page]).per(18)
   end
   
   def new
@@ -43,7 +42,6 @@ class TemplatesController < ApplicationController
     @like = @template.likes.find_by(user: current_user)
   end
 
-  
   def create
     @template = current_user.templates.build(template_params)
     if @template.save
@@ -62,7 +60,6 @@ class TemplatesController < ApplicationController
       redirect_to category_templates_path(@template.category), alert: 'You are not authorized to delete this template.'
     end
   end
-
   
   private
   
@@ -71,7 +68,7 @@ class TemplatesController < ApplicationController
   end
 
   def search_templates
-    @p = Template.ransack(params[:q])  # 検索オブジェクトを生成
+    @q = Template.ransack(params[:q])  # 検索オブジェクトを生成
   end
 
   def require_login
