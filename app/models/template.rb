@@ -18,4 +18,8 @@ class Template < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ['title', 'content'] # ここに検索可能な属性を追加します
   end
+
+  def self.ransackable_associations(auth_object = nil)
+    ['user', 'category'] # 検索可能な関連付け
+  end
 end
