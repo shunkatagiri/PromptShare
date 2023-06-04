@@ -16,7 +16,7 @@ export default class extends Controller {
   }
 
   toggle(event) {
-    event.stopPropagation() 
+    event.stopPropagation() // 追加
     this.menuTarget.classList.toggle('hidden')
   }
 
