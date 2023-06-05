@@ -3,6 +3,7 @@ class Template < ApplicationRecord
   has_many :bookmarking_users, through: :bookmarks, source: :user
   has_many :likes, dependent: :destroy
   has_many :liking_users, through: :likes, source: :user
+  before_save :extract_link_from_usage_example
 
   belongs_to :user
   belongs_to :category
@@ -21,5 +22,13 @@ class Template < ApplicationRecord
 
   def self.ransackable_associations(auth_object = nil)
     ['user', 'category'] # 検索可能な関連付け
+  end
+
+  private
+
+  def extract_link_from_usage_example
+    link_regex = /https:\/\/chat\.openai\.com\/share\/\S+/
+    link = self.usage_example[link_regex]
+    self.link = link if link
   end
 end
