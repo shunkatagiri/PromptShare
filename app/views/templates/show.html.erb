@@ -1,3 +1,4 @@
+<%# app/views/templates/show.html.erb %>
 <%= turbo_frame_tag 'templates' do %>
 <section class="min-h-screen px-6 py-8 bg-white" data-controller="copy">
   <!-- カテゴリー一覧 -->
@@ -66,10 +67,14 @@
       </div>
 
       <!-- チャット内容 -->
-      <div class="mt-6 p-6 bg-gray-100 rounded-md">
-        <h3 class="text-xl font-semibold mb-4">チャットの内容：</h3>
-        <p><%= @template.chat_content %></p>
-      </div>
+        <div class="mt-6 p-6 bg-gray-100 rounded-md">
+          <h3 class="text-xl font-semibold mb-4">チャットの内容：</h3>
+          <p><%= @template.chat_content %></p>
+          <% if @template.usage_example.present? %>
+            <iframe src="<%= @template.usage_example %>" width="800" height="600"></iframe>
+          <% end %>
+        </div>
+
   
       <!-- 視覚的な区切りのためのスペース -->
       <div class="py-6"></div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_05_121526) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_05_123334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_121526) do
     t.integer "importance"
     t.integer "likes_count", default: 0, null: false
     t.text "chat_content"
+    t.string "link"
     t.index ["user_id"], name: "index_templates_on_user_id"
   end
 
