@@ -31,7 +31,6 @@ class Template < ApplicationRecord
     link = self.usage_example[link_regex]
     if link
       self.link = link 
-      # ここでOpenAI APIを利用して、linkからチャットの内容を取得
       chat_content = get_chat_content_from_link(link)
       self.chat_content = chat_content
     end
