@@ -32,9 +32,10 @@
           <pre class="text-white pt-12 pb-16 overflow-auto" data-target="copy.source"><%= @template.content %></pre>
         </div>
       </div>
+
       <!-- 削除ボタンとブックマークボタン -->
       <div class="flex justify-center mt-6 space-x-4">
-      <!-- いいねボタン -->
+        <!-- いいねボタン -->
         <% if logged_in? %>
           <%= turbo_frame_tag dom_id(@template, :like) do %>
             <% if @template.liked_by?(current_user) %>
@@ -44,7 +45,6 @@
             <% end %>
           <% end %>
         <% end %>
-
 
         <!-- ブックマークボタン -->
         <% if @bookmark %>
@@ -64,8 +64,14 @@
           <% end %>
         <% end %>
       </div>
+
+      <!-- チャット内容 -->
+      <div class="mt-6 p-6 bg-gray-100 rounded-md">
+        <h3 class="text-xl font-semibold mb-4">チャットの内容：</h3>
+        <p><%= @template.chat_content %></p>
+      </div>
   
-  <!-- 視覚的な区切りのためのスペース -->
-  <div class="py-6"></div>
-</section>
+      <!-- 視覚的な区切りのためのスペース -->
+      <div class="py-6"></div>
+  </section>
 <% end %>
