@@ -29,6 +29,15 @@ class Template < ApplicationRecord
   def extract_link_from_usage_example
     link_regex = /https:\/\/chat\.openai\.com\/share\/\S+/
     link = self.usage_example[link_regex]
-    self.link = link if link
+    if link
+      self.link = link 
+      # ここでOpenAI APIを利用して、linkからチャットの内容を取得
+      chat_content = get_chat_content_from_link(link)
+      self.chat_content = chat_content
+    end
+  end
+  
+  def get_chat_content_from_link(link)
+    # OpenAIのAPIを利用して、linkからチャットの内容を取得するコードを書く
   end
 end
