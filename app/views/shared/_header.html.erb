@@ -1,5 +1,6 @@
+<%# app/views/shared/_header.html.erb %>
 <div class="w-full max-w-7xl bg-gray-100" data-controller="header">
-  <div class="flex flex-col max-w-screen-xl p-5 mx-auto justify-between md:items-center md:flex-row md:px-6 lg:px-8" data-controller="menu">
+  <div class="flex flex-col max-w-screen-xl p-5 mx-auto justify-between text-sm md:items-center md:flex-row md:px-6 lg:px-8" data-controller="menu">
     <div class="flex justify-between w-full lg:w-auto">
       <div class="flex justify-between w-full md:w-auto">
         <%= link_to 'PromptShare', root_path, class: 'text-lg font-bold tracking-tighter text-blue-600 transition duration-500 ease-in-out transform tracking-relaxed lg:pr-8' %>
@@ -8,18 +9,19 @@
         </button>
       </div>
 
-      <nav class="flex items-center flex-grow pb-4 md:flex md:justify-start md:flex-row lg:border-l-2 lg:pl-2" data-menu-target="nav">
-        <%= link_to 'プロンプトとは？', about_path, class: 'px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline lg:border-r-2'%>
-        <%= link_to '投稿', new_template_path ,class: 'px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline lg:border-r-2'%>
+    <div class="flex justify-center w-full lg:w-auto ">
+      <%= search_form_for @q, url: search_templates_path, class: "md:flex md:items-center md:justify-center md:flex-row  lg:pl-2" do |f| %>
+        <%= f.search_field :title_or_content_cont, placeholder: "テンプレートを検索", class: "px-4 py-2 text-gray-500 hover:text-blue-600 focus:outline-none focus:shadow-outline" %>
+        <%= f.submit "検索", class: "px-4 py-2 text-gray-500 hover:text-blue-600 focus:outline-none focus:shadow-outline " %>
+      <% end %>
+    </div>
+    
+      <nav class="flex items-center flex-grow pb-4 md:flex md:items-center md:justify-start md:flex-row lg:border-l-2 lg:pl-2" data-menu-target="nav">
+        <%= link_to '投稿', new_template_path ,class: 'px-4 py-2 text-gray-500 hover:text-blue-600 focus:outline-none focus:shadow-outline lg:border-r-2'%>
+        <%= link_to 'プロンプトとは？', about_path, class: 'px-4 py-2 text-gray-500 hover:text-blue-600 focus:outline-none focus:shadow-outline lg:border-r-2'%>
       </nav>
     </div>
     
-    <div class="flex justify-center w-full lg:w-auto ml-56">
-      <%= search_form_for @q, url: search_templates_path, class: "md:flex md:items-center md:justify-center md:flex-row  lg:pl-2" do |f| %>
-        <%= f.search_field :title_or_content_cont, placeholder: "テンプレートを検索", class: "px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline" %>
-        <%= f.submit "検索", class: "px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline " %>
-      <% end %>
-    </div>
 
     <% if logged_in? %>
       <div class="relative inline-block text-left ml-auto" data-controller="dropdown">
@@ -39,8 +41,8 @@
       </div>
     <% else %>
       <div class="inline-flex items-center gap-2 list-none ml-auto">
-        <%= link_to 'ログイン', login_path, class: 'items-center block px-10 py-2.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500' %>
-        <%= link_to '新規登録', new_user_path, class: 'items-center block px-10 py-3 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500' %>
+        <%= link_to 'ログイン', login_path, class: 'items-center block px-10 py-2.5 font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500' %>
+        <%= link_to '新規登録', new_user_path, class: 'items-center block px-10 py-3 font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500' %>
       </div>
     <% end %>
   </div>
