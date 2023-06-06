@@ -9,20 +9,18 @@
         </button>
       </div>
 
-    <div class="flex justify-center w-full lg:w-auto ">
-      <%= search_form_for @q, url: search_templates_path, class: "md:flex md:items-center md:justify-center md:flex-row  lg:pl-2" do |f| %>
-        <%= f.search_field :title_or_content_cont, placeholder: "テンプレートを検索", class: "px-4 py-2 text-gray-500 hover:text-blue-600 focus:outline-none focus:shadow-outline" %>
-        <%= f.submit "検索", class: "px-4 py-2 text-gray-500 hover:text-blue-600 focus:outline-none focus:shadow-outline " %>
-      <% end %>
-    </div>
+    <nav class="flex items-center flex-grow pb-4 md:flex md:items-center md:justify-start md:flex-row lg:border-l-2 lg:pl-2" data-menu-target="nav">
+      <div class="flex justify- w-full lg:w-auto ">
+        <%= search_form_for @q, url: search_templates_path, class: "md:flex md:items-center md:justify-center md:flex-row  lg:pl-2" do |f| %>
+          <%= f.search_field :title_or_content_cont, placeholder: "テンプレートを検索", class: "px-4 py-2 text-gray-500 hover:text-blue-600 focus:outline-none focus:shadow-outline" %>
+          <%= f.submit "検索", class: "px-4 py-2 text-gray-500 hover:text-blue-600 focus:outline-none focus:shadow-outline lg:border-r-2 " %>
+        <% end %>
+      </div>
+          <%= link_to '投稿', new_template_path ,class: 'px-4 py-2 text-gray-500 hover:text-blue-600 focus:outline-none focus:shadow-outline lg:border-r-2'%>
+          <%= link_to 'プロンプトとは？', about_path, class: 'px-4 py-2 text-gray-500 hover:text-blue-600 focus:outline-none focus:shadow-outline lg:border-r-2'%>
+      </div>
+    </nav>
     
-      <nav class="flex items-center flex-grow pb-4 md:flex md:items-center md:justify-start md:flex-row lg:border-l-2 lg:pl-2" data-menu-target="nav">
-        <%= link_to '投稿', new_template_path ,class: 'px-4 py-2 text-gray-500 hover:text-blue-600 focus:outline-none focus:shadow-outline lg:border-r-2'%>
-        <%= link_to 'プロンプトとは？', about_path, class: 'px-4 py-2 text-gray-500 hover:text-blue-600 focus:outline-none focus:shadow-outline lg:border-r-2'%>
-      </nav>
-    </div>
-    
-
     <% if logged_in? %>
       <div class="relative inline-block text-left ml-auto" data-controller="dropdown">
         <div class="h-full w-full text-gray-500">
