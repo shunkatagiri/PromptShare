@@ -40,14 +40,17 @@ class TemplatesController < ApplicationController
     @like = @template.likes.find_by(user: current_user)
   end
 
+# app/controllers/templates_controller.rb
+
   def create
     @template = current_user.templates.build(template_params)
     if @template.save
-      redirect_to root_path, notice: 'テンプレートが正常に投稿されました'
+      redirect_to template_path(@template), notice: 'テンプレートが正常に投稿されました'
     else
       render :new
     end
   end
+
 
   def destroy
     @template = Template.find(params[:id])
