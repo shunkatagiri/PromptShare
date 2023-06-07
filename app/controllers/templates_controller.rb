@@ -51,6 +51,25 @@ class TemplatesController < ApplicationController
     end
   end
 
+  def edit
+    @template = Template.find(params[:id])
+    if @template.user != current_user
+      redirect_to template_path(@template), alert: 'あなたはこのテンプレートを編集する権限がありません。'
+    end
+  end
+  
+  def update
+    @template = Template.find(params[:id])
+    if @template.user == current_user
+      if @template.update(template_params)
+        redirect_to template_path(@template), notice: 'テンプレートが正常に更新されました。'
+      else
+        render :edit
+      end
+    else
+      redirect_to template_path(@template), alert: 'あなたはこのテンプレートを編集する権限がありません。'
+    end
+  end
 
   def destroy
     @template = Template.find(params[:id])
