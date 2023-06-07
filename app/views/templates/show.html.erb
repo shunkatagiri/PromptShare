@@ -45,10 +45,14 @@
           <% end %>
 
           <!-- 削除ボタン -->
+           <!-- 削除ボタン -->
           <% if @template.user == current_user %>
             <%= button_to template_path(@template), method: :delete, data: { turbo_confirm: '本当に削除しますか?' }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" do %>
               <i class="fa fa-trash"></i>
             <% end %>
+
+            <!-- 編集ボタン -->
+            <%= link_to 'Edit', edit_template_path(@template), class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
           <% end %>
         </div>
       </div>
