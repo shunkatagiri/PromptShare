@@ -35,29 +35,28 @@
             <!-- ここから追加部分 -->
 
           <!-- いいねボタン -->
-            <% if logged_in? %>
-              <%= turbo_frame_tag dom_id(template, :like) do %>
-                <% if template.liked_by?(current_user) %>
-                  <%= render 'likes/unlike', template: template, like: like %>
-                <% else %>
-                  <%= render 'likes/like', template: template %>
+           <!-- いいねボタン -->
+              <% if logged_in? %>
+                <%= turbo_frame_tag dom_id(template, :like) do %>
+                  <% if like = template.likes.find_by(user: current_user) %>
+                    <%= render 'likes/unlike', template: template, like: like %>
+                  <% else %>
+                    <%= render 'likes/like', template: template %>
+                  <% end %>
                 <% end %>
               <% end %>
-            <% end %>
 
            <!-- ブックマークボタン -->
               <% if logged_in? %>
                 <%= turbo_frame_tag dom_id(template, :bookmark) do %>
                   <% if bookmark = template.bookmarks.find_by(user: current_user) %>
-                    <%= render 'bookmarks/unbookmark', template: template, bookmark: bookmark %>
+                    <%= render 'bookmarks/unbookmark', template: template %>
                   <% else %>
                     <%= render 'bookmarks/bookmark', template: template %>
                   <% end %>
                 <% end %>
               <% end %>
-
             <!-- ここまで追加部分 -->
-            
           </div>
         <% end %>
       <% end %>
