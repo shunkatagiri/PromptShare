@@ -32,31 +32,27 @@
             <p class="mt-2 text-gray-600"><%= template.description %></p>
             <p><%= template.likes_count %> likes</p>
             
-            <!-- ここから追加部分 -->
-
-          <!-- いいねボタン -->
-           <!-- いいねボタン -->
-              <% if logged_in? %>
-                <%= turbo_frame_tag dom_id(template, :like) do %>
-                  <% if like = template.likes.find_by(user: current_user) %>
-                    <%= render 'likes/unlike', template: template, like: like %>
-                  <% else %>
-                    <%= render 'likes/like', template: template %>
-                  <% end %>
+            <!-- いいねボタン -->
+            <% if logged_in? %>
+              <%= turbo_frame_tag dom_id(template, :like) do %>
+                <% if like = template.likes.find_by(user: current_user) %>
+                  <%= render 'likes/unlike', template: template, like: like %>
+                <% else %>
+                  <%= render 'likes/like', template: template %>
                 <% end %>
               <% end %>
+            <% end %>
 
-           <!-- ブックマークボタン -->
-              <% if logged_in? %>
-                <%= turbo_frame_tag dom_id(template, :bookmark) do %>
-                  <% if bookmark = template.bookmarks.find_by(user: current_user) %>
-                    <%= render 'bookmarks/unbookmark', template: template %>
-                  <% else %>
-                    <%= render 'bookmarks/bookmark', template: template %>
-                  <% end %>
+            <!-- ブックマークボタン -->
+            <% if logged_in? %>
+              <%= turbo_frame_tag dom_id(template, :bookmark) do %>
+                <% if bookmark = template.bookmarks.find_by(user: current_user) %>
+                  <%= render 'bookmarks/unbookmark', template: template, bookmark: bookmark %>
+                <% else %>
+                  <%= render 'bookmarks/bookmark', template: template %>
                 <% end %>
               <% end %>
-            <!-- ここまで追加部分 -->
+            <% end %>
           </div>
         <% end %>
       <% end %>
