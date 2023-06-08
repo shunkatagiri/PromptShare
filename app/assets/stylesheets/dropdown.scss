@@ -1,0 +1,10 @@
+.dropdown-content {
+  position: absolute;
+  top: 100%; /* メニューボタンの下に配置 */
+  right: 0; /* 追加 */
+  width: 250px;
+  background-color: white;
+  z-index: 1000;
+  overflow: auto; 
+}
+
