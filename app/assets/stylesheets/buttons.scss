@@ -1,0 +1,13 @@
+/* いいねとブックマークのボタン用のスタイル */
+.button {
+  background-color: white;
+  border-radius: 4px;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: lightgray;
+}
