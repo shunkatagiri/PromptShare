@@ -46,14 +46,14 @@
             <% end %>
 
             <!-- ブックマークボタン -->
-            <% if bookmark %>
-              <%= turbo_frame_tag dom_id(template, :bookmark) do %>
-                <%= render 'bookmarks/unbookmark', bookmark: bookmark %>
-              <% end %>
+            <% if template.bookmarked_by?(current_user) %>
+                <%= turbo_frame_tag dom_id(template, :bookmark) do %>
+                    <%= render 'bookmarks/unbookmark', template: template %>
+                <% end %>
             <% else %>
-              <%= turbo_frame_tag dom_id(template, :bookmark) do %>
-                <%= render 'bookmarks/bookmark', template: template %>
-              <% end %>
+                <%= turbo_frame_tag dom_id(template, :bookmark) do %>
+                    <%= render 'bookmarks/bookmark', template: template %>
+                <% end %>
             <% end %>
 
             <!-- ここまで追加部分 -->
