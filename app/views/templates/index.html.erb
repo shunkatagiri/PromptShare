@@ -34,7 +34,7 @@
             
             <!-- ここから追加部分 -->
 
-            <!-- いいねボタン -->
+          <!-- いいねボタン -->
             <% if logged_in? %>
               <%= turbo_frame_tag dom_id(template, :like) do %>
                 <% if template.liked_by?(current_user) %>
@@ -46,14 +46,14 @@
             <% end %>
 
             <!-- ブックマークボタン -->
-            <% if template.bookmarked_by?(current_user) %>
-                <%= turbo_frame_tag dom_id(template, :bookmark) do %>
-                    <%= render 'bookmarks/unbookmark', template: template %>
+            <% if logged_in? %>
+              <%= turbo_frame_tag dom_id(template, :bookmark) do %>
+                <% if template.bookmarked_by?(current_user) %>
+                  <%= render 'bookmarks/unbookmark', template: template %>
+                <% else %>
+                  <%= render 'bookmarks/bookmark', template: template %>
                 <% end %>
-            <% else %>
-                <%= turbo_frame_tag dom_id(template, :bookmark) do %>
-                    <%= render 'bookmarks/bookmark', template: template %>
-                <% end %>
+              <% end %>
             <% end %>
 
             <!-- ここまで追加部分 -->
