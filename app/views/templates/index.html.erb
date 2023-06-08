@@ -38,7 +38,7 @@
             <% if logged_in? %>
               <%= turbo_frame_tag dom_id(template, :like) do %>
                 <% if template.liked_by?(current_user) %>
-                  <%= render 'likes/unlike', template: template, like: @like %>
+                  <%= render 'likes/unlike', template: template, like: like %>
                 <% else %>
                   <%= render 'likes/like', template: template %>
                 <% end %>
@@ -46,9 +46,9 @@
             <% end %>
 
             <!-- ブックマークボタン -->
-            <% if @bookmark %>
+            <% if bookmark %>
               <%= turbo_frame_tag dom_id(template, :bookmark) do %>
-                <%= render 'bookmarks/unbookmark', bookmark: @bookmark %>
+                <%= render 'bookmarks/unbookmark', bookmark: bookmark %>
               <% end %>
             <% else %>
               <%= turbo_frame_tag dom_id(template, :bookmark) do %>
