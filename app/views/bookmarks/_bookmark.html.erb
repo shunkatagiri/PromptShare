@@ -1,8 +1,4 @@
 <%# app/views/bookmarks/_bookmark.html.erb %>
-<%= button_to template_bookmarks_path(template), method: :post, class: "border border-black bg-white hover:bg-black hover:text-white font-bold py-2 px-4 ml-2 rounded", data: { turbo_frame: dom_id(template, :bookmark) } do %>
-  <% if template.bookmarked_by?(current_user) %>
-    <i class="fas fa-bookmark text-black hover:text-white"></i>
-  <% else %>
-    <i class="far fa-bookmark text-black hover:text-white"></i>
-  <% end %>
+<%= button_to template_bookmarks_path(template), method: :post, class: "inline-flex items-center justify-center font-bold px-4 py-2 hover:bg-gray-100 ml-2 shadow", data: { turbo_frame: dom_id(template, :bookmark) } do %>
+  <i class="<%= template.bookmarked_by?(current_user) ? 'fas fa-bookmark text-blue-500' : 'far fa-bookmark text-black' %>"></i> ブックマーク
 <% end %>
