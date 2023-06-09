@@ -1,0 +1,19 @@
+<%# app/views/feedbacks/new.html.erb %>
+
+<h1>フィードバックを送る</h1>
+
+<%= form_with model: @feedback, local: true do |form| %>
+  <div>
+    <%= form.label :content, "フィードバック内容" %>
+    <%= form.text_area :content, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :details, "詳細情報 (任意)" %>
+    <%= form.text_area :details %>
+  </div>
+
+  <div>
+    <%= form.submit "送信する" %>
+  </div>
+<% end %>
