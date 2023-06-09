@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_05_123334) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_09_161653) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_123334) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.text "content"
+    t.text "details"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_feedbacks_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -68,6 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_123334) do
 
   add_foreign_key "bookmarks", "templates"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "feedbacks", "users"
   add_foreign_key "likes", "templates"
   add_foreign_key "likes", "users"
   add_foreign_key "templates", "users"
