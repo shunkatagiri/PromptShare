@@ -1,6 +1,6 @@
 # app/controllers/templates_controller.rb
 class TemplatesController < ApplicationController
-  before_action :require_login, only: [:create]
+  before_action :require_login, only: [:create ,:edit, :update]
 
   def index
     @category = Category.find(params[:category_id]) if params[:category_id].present?
