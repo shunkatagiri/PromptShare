@@ -29,16 +29,19 @@
             <% end %>
           <% end %>
 
-          <!-- ブックマークボタン -->
-          <% if @bookmark %>
-            <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
-              <%= render 'bookmarks/unbookmark', bookmark: @bookmark, template: @template %>
-            <% end %>
-          <% else %>
-            <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
-              <%= render 'bookmarks/bookmark', template: @template %>
+         <!-- ブックマークボタン -->
+          <% if logged_in? %>
+            <% if @bookmark %>
+              <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
+                <%= render 'bookmarks/unbookmark', bookmark: @bookmark, template: @template %>
+              <% end %>
+            <% else %>
+              <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
+                <%= render 'bookmarks/bookmark', template: @template %>
+              <% end %>
             <% end %>
           <% end %>
+
 
           <!-- ユーザーが所有者である場合のみ、編集と削除ボタンを表示 -->
           <% if @template.user == current_user %>
