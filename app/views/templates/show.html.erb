@@ -37,7 +37,7 @@
           <!-- ブックマークボタン -->
           <% if @bookmark %>
             <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
-              <%= render 'bookmarks/unbookmark', bookmark: @bookmark %>
+              <%= render 'bookmarks/unbookmark', bookmark: @bookmark, template: @template %>
             <% end %>
           <% else %>
             <%= turbo_frame_tag dom_id(@template, :bookmark) do %>
