@@ -1,4 +1,4 @@
-<%# app/views/likes/_unlike.html.erb %>
-<%= button_to template_likes_path(template), method: :post, class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 ml-2 rounded", data: { turbo_frame: dom_id(template, :like) } do %>
-  <i class="far fa-heart" style="color: #ffffff;"></i>
+<%# app/views/likes/_like.html.erb %>
+<%= button_to template_likes_path(template), method: :post, class: "border border-black bg-white hover:bg-black hover:text-white font-bold py-2 px-4 ml-2 rounded", data: { turbo_frame: dom_id(template, :like) } do %>
+  <i class="far fa-heart text-black hover:text-white"></i>
 <% end %>

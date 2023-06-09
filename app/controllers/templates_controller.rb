@@ -21,7 +21,6 @@ class TemplatesController < ApplicationController
     @templates = @templates.page(params[:page]).per(18)
   
     respond_to do |format|
-      format.turbo_stream
       format.html
     end
   end
