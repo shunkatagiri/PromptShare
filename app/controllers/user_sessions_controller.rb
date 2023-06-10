@@ -3,12 +3,14 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    @user = login(params[:email], params[:password])
-    if @user
-      redirect_back_or_to  root_path, notice: 'Login successful.'
+    @user = User.find_by(email: params[:email])
+  
+    if @user&.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect_to root_path
     else
-      flash[:alert] = 'Login failed.'
-      redirect_to action: 'new'
+      flash.now[:alert] = 'メールアドレスまたはパスワードが間違っています。'
+      render :new
     end
   end
 
