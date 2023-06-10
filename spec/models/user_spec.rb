@@ -60,5 +60,20 @@ RSpec.describe User, type: :model do
       user = build_user(password: 'ab', password_confirmation: 'ab')
       expect(user.valid?).to eq(false)
     end
+
+    it 'validates password when crypted_password is changed' do
+      existing_user = create(:user)
+      existing_user.password = 'new_password'
+      existing_user.password_confirmation = 'new_password'
+      expect(existing_user).to be_valid
+    end
+  
+    it 'validates password confirmation when crypted_password is changed' do
+      existing_user = create(:user)
+      existing_user.password = 'new_password'
+      existing_user.password_confirmation = 'wrong_password'
+      expect(existing_user).not_to be_valid
+      expect(existing_user.errors.details[:password_confirmation]).to include({error: :confirmation, attribute: "Password"})
+    end
   end
 end
