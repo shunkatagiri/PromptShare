@@ -7,5 +7,5 @@
 <% if @user.persisted? %>
   <%= turbo_stream.replace 'users_new', partial: 'users/form', locals: { user: @user } %>
 <% else %>
-  <%= turbo_stream.replace 'users_new', partial: 'users/new' %>
+  <%= turbo_stream.replace 'users_new', action: 'new' %>
 <% end %>
