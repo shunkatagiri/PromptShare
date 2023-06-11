@@ -1,0 +1,8 @@
+<% if flash.any? %>
+  <%= turbo_stream.update 'flash_messages', partial: 'shared/flash', locals: { flash: flash } %>
+<% end %>
+<% if @user&.authenticate(params[:password]) %>
+  <%= turbo_stream.replace 'user_sessions_new', partial: 'user_sessions/form', locals: { user: @user } %>
+<% else %>
+  <%= turbo_stream.replace 'user_sessions_new', partial: 'user_sessions/new' %>
+<% end %>
