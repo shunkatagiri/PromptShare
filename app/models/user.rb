@@ -1,3 +1,4 @@
+# app/models/user.rb
 class User < ApplicationRecord
   authenticates_with_sorcery!
   has_many :bookmarks
