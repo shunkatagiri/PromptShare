@@ -11,7 +11,7 @@ class UserSessionsController < ApplicationController
     else
       flash.now[:alert] = 'メールアドレスまたはパスワードが間違っています。'
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace('user_sessions_new', partial: 'user_sessions/new') }
+        format.turbo_stream { render :create }
         format.html { render :new }
       end
     end
