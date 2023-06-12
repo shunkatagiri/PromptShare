@@ -1,11 +1,2 @@
 <%# app/views/users/create.turbo_stream.erb %>
-
-<% if flash.any? %>
-  <%= turbo_stream.update 'flash_messages', partial: 'shared/flash', locals: { flash: flash } %>
-<% end %>
-
-<% if @user.persisted? %>
-  <%= turbo_stream.replace 'users_new', partial: 'users/form', locals: { user: @user } %>
-<% else %>
-  <%= turbo_stream.replace 'users_new', action: 'new' %>
-<% end %>
+<%= turbo_stream.replace 'new_user', partial: 'users/form', locals: { user: @user } %>
