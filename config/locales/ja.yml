@@ -1,16 +1,16 @@
 # config/locales/ja.yml
-
 ja:
   activerecord:
     errors:
-      messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているため削除できません"
-          has_many: "%{record}が存在しているため削除できません"
-  attributes:
-    user:
-      name: "名前"
-      email: "メールアドレス"
-      password: "パスワード"
-      password_confirmation: "パスワード（確認）"
+      models:
+        user:
+          attributes:
+            name:
+              blank: "を入力してください" # 空白を許可しないバリデーション
+            email:
+              blank: "を入力してください" # 空白を許可しないバリデーション
+              invalid: "は無効です" # フォーマットが不正な場合
+              taken: "は既に存在します" # 一意性バリデーション
+            password:
+              blank: "を入力してください" # 空白を許可しないバリデーション
+              confirmation: "が一致しません" # 確認フィールドとの一致を求めるバリデーション
