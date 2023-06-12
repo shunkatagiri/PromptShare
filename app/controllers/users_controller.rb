@@ -8,14 +8,17 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    # If user registration is successful, redirect to the login page
+
     if @user.save
-      flash[:notice] = "ユーザー登録が完了しました"
-      redirect_to root_path
+      redirect_to @user
     else
-      render :new
+      respond_to do |format|
+        format.turbo_stream
+        format.html { render :new }
+      end
     end
   end
+
 
   def profile
   end

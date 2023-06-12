@@ -1,5 +1,17 @@
-<%# app/views/user/_form.html.erb %>
-<%= form_with(model: @user, local: true) do |form| %>
+<%# app/views/users/_form.html.erb %>
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Rest of the form fields -->
   <div class="space-y-4 md:space-y-6">
     <div>
       <%= form.label :name, "Full name", class: "block mb-2 text-sm font-medium text-gray-900" %>
