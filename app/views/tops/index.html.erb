@@ -20,9 +20,11 @@
     <!-- text - end -->
 
     <!-- category - card -- start -->
-    <div class="flex flex-wrap justify-around space-y-8 mb-16">
+    <div class="flex flex-wrap justify-around mb-16">
       <% @categories.each do |category| %>
-        <%= render 'categories/card', category: category %>
+        <div class="my-4">
+          <%= render 'categories/card', category: category %>
+        </div>
       <% end %>
     </div>
     <!-- category - card -- end -->
