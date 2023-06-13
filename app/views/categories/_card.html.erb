@@ -1,3 +1,4 @@
+<%# app/views/categories/_card.html.erb %>
 <%= link_to category_templates_path(category) do %>
   <div class="w-[300px] h-[200px] rounded overflow-hidden shadow-lg">
     <div class="px-6 py-4">
@@ -8,10 +9,6 @@
          <%= category.description %>
       </p>
     </div>
-    <div class="px-6 pt-4 pb-2">
-      <%# <span class="inlinex-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#ポートフォリオ</span> %>
-      <%# <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#アプリ生成</span> %>
-      <%# <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#効率化</span> %>
-    </div>
+
   </div>
 <% end %>
