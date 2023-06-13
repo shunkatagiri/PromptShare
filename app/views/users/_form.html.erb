@@ -1,16 +1,6 @@
 <%# app/views/users/_form.html.erb %>
 <%= form_with(model: user) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation" class="bg-red-500 text-white px-4 py-2 rounded mt-2 mb-4 text-center">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-        <% user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/errors', model: user %>
 
   <!-- Rest of the form fields -->
   <div class="space-y-4 md:space-y-6">
