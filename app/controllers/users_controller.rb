@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to @user
     else
+      puts @user.errors.full_messages
       respond_to do |format|
         format.turbo_stream
         format.html { render :new }
