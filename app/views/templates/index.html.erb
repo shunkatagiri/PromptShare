@@ -18,7 +18,7 @@
     <div class="mt-5">
       <%= form_with url: templates_path, method: :get, local: true do |f| %>
         <%= f.hidden_field :category_id, value: @category&.id %>
-        <%= f.select :order, options_for_select([['Newest', 'newest'], ['Most Liked', 'most_liked']], selected: params[:order]), {}, { onchange: 'this.form.submit();' } %>
+        <%= f.select :order, options_for_select([['更新順', 'newest'], ['いいね順', 'most_liked']], selected: params[:order]), {}, { onchange: 'this.form.submit();' } %>
       <% end %>
     </div>
 
