@@ -1,3 +1,4 @@
+# app/controllers/users_controller.rb
 class UsersController < ApplicationController
   before_action :set_user, only: [:profile, :edit, :update]
 
@@ -7,16 +8,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-
+    @user = User.new(user_params) # user_paramsはprivateメソッド
     if @user.save
-      redirect_to @user
+      session[:user_id] = @user.id # ログインする
+      redirect_to root_path, success: '登録が完了しました'
     else
-      puts @user.errors.full_messages
-      respond_to do |format|
-        format.turbo_stream
-        format.html { render :new }
-      end
+      flash.now[:danger] = '登録に失敗しました'
+      render :new, status: :unprocessable_entity
     end
   end
 
