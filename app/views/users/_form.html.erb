@@ -1,6 +1,7 @@
 <%# app/views/users/_form.html.erb %>
 <%= form_with(model: user) do |form| %>
-  <%= render 'shared/errors', model: user %>
+ <%= render 'shared/errors', object: user %>
+
 
   <!-- Rest of the form fields -->
   <div class="space-y-4 md:space-y-6">

@@ -1,10 +1,10 @@
 <!-- app/views/shared/_errors.html.erb -->
-<% if model.errors.any? %>
+<% if object.errors.any? %>
   <div id="error_explanation" class="bg-red-500 text-white px-4 py-2 rounded mt-2 mb-4 text-center">
-    <h2><%= pluralize(model.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <h2><%= pluralize(object.errors.count, "error") %> prohibited this user from being saved:</h2>
 
     <ul>
-      <% model.errors.full_messages.each do |message| %>
+      <% object.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>
