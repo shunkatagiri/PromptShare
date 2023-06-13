@@ -1,16 +1,23 @@
-# config/locales/ja.yml
 ja:
   activerecord:
+    attributes:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"
     errors:
       models:
         user:
           attributes:
             name:
-              blank: "を入力してください" # 空白を許可しないバリデーション
+              blank: "を入力してください" 
             email:
-              blank: "を入力してください" # 空白を許可しないバリデーション
-              invalid: "は無効です" # フォーマットが不正な場合
-              taken: "は既に存在します" # 一意性バリデーション
+              blank: "を入力してください" 
+              invalid: "は無効です" 
+              taken: "は既に存在します" 
             password:
-              blank: "を入力してください" # 空白を許可しないバリデーション
-              confirmation: "が一致しません" # 確認フィールドとの一致を求めるバリデーション
+              blank: "を入力してください" 
+              confirmation: "が一致しません"
+            password_confirmation:
+              confirmation: "が一致しません"
