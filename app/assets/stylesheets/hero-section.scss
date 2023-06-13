@@ -1,8 +1,8 @@
-.hero-section {
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  background-image: url('/images/hero.png');
-  background-repeat: no-repeat;
+// app/assets/stylesheets/hero-section.scss
+
+.bg-hero {
+  background-image: url('https://media.discordapp.net/attachments/1092357226569662475/1108806488039899266/35_katagiri_A_scene_depicting_a_diverse_group_of_people_sharing_220d47c6-20fa-4ec8-9437-e39ebe4903a9.png?width=1068&height=1068');
   background-position: center;
-  background-size: contain; /* 画像を要素内に収まるように縮小 */
+  background-repeat: no-repeat;
+  background-size: cover;
 }
