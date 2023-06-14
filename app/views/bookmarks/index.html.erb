@@ -19,7 +19,7 @@
           <% bookmarks.each do |bookmark| %>
             <%= link_to template_path(bookmark.template), class: "bg-white rounded-lg shadow sm:max-w-xl transition-transform duration-500 ease-in-out hover:scale-105", style: "text-decoration: none;" do %>
               <div class="p-6 space-y-4 sm:p-8">
-                <h3 class="text-lg font-bold text-blue-500 hover:text-blue-600">
+                <h3 class="text-lg font-bold text-gray-500 hover:text-gray-600">
                   <%= bookmark.template.title %>
                 </h3>
                 <p class="mt-2 text-gray-600"><%= bookmark.template.description %></p>
