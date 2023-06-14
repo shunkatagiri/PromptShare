@@ -76,7 +76,8 @@ gem "sorcery", "~> 0.16.5"
 
 gem 'faker'
 
+
 gem 'importmap-rails'
 gem 'kaminari'
 gem 'ransack'
-gem 'sassc-rails'
+gem 'cssbundling-rails'
