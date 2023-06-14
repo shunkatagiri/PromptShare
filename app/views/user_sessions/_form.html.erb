@@ -4,7 +4,7 @@
     <div>
       <% user = local_assigns[:user] || User.new %>
       <%= form.label :email, "email", class: "block mb-2 text-sm font-medium text-gray-900" %>
-      <%= form.email_field :email, id: "email", class: "bg-gray-35 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-800 focus:border-gray-800 block w-full p-2.5", required: true %>
+      <%= form.email_field :email, id: "email", class: "bg-gray-35 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-900 focus:border-gray-800 block w-full p-2.5", required: true %>
     </div>
     <div>
       <%= form.label :password, "Password", class: "block mb-2 text-sm font-medium text-gray-900" %>
