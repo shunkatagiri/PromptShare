@@ -1,4 +1,4 @@
-# db/seeds.rb
+# db/seeds/development.rb
 [
   { 
     name: 'ポートフォリオ作成', 
