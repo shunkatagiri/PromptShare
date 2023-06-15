@@ -278,7 +278,7 @@ DEPENDENCIES
   ransack
   rspec-rails (~> 5.0)
   sorcery (~> 0.16.5)
-  sprockets-rails (~> 3.4)
+  sprockets-rails
   stimulus-rails
   tailwindcss-rails
   turbo-rails
