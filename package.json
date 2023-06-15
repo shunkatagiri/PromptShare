@@ -5,6 +5,6 @@
     "postcss-cli": "^10.1.0"
   },
   "scripts": {
-    "build:css": "postcss ./app/assets/stylesheets/application.css --output ./app/assets/builds/application.css"
+    "build:css": "postcss ./app/assets/stylesheets/application.scss --output ./app/assets/builds/application.css"
   }
 }
