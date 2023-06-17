@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
   
   resources :users, only: [:new, :create, :edit, :update]
-  resources :templates, only: [:index, :show, :create, :new, :edit, :destroy] do
+  resources :templates, only: [:index, :show, :create, :new, :edit, :update, :destroy] do
     resources :bookmarks, only: [:create, :destroy, :index]
     resources :likes, only: [:create, :destroy]
   end
