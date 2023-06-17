@@ -48,8 +48,9 @@
     name: 'その他',
     description: '一般的なカテゴリに当てはまらないプロンプトを投稿するためのカテゴリーです。思いついたアイデアを自由にシェアしてください。'
   }
-].each do |category_attrs|
+].each.with_index(1) do |category_attrs, index|
   Category.find_or_create_by(name: category_attrs[:name]) do |category|
     category.description = category_attrs[:description]
+    category.position = index
   end
 end
