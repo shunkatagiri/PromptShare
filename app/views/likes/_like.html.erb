@@ -1,5 +1,10 @@
 <%# app/views/likes/_like.html.erb %>
-<%= button_to template_likes_path(template), method: :post, class: "inline-flex items-center justify-center font-bold px-4 py-2 hover:bg-gray-100  ml-2 shadow", data: { turbo_frame: dom_id(template, :like) } do %>
-  <i class="<%= template.liked_by?(current_user) ? 'fas fa-heart text-red-500' : 'far fa-heart text-black' %>"></i> 
+<% if logged_in? %>
+  <%= button_to template_likes_path(template), method: :post, class: "inline-flex items-center justify-center font-bold px-4 py-2 hover:bg-gray-100  ml-2 shadow", data: { turbo_frame: dom_id(template, :like) } do %>
+    <i class="<%= template.liked_by?(current_user) ? 'fas fa-heart text-red-500' : 'far fa-heart text-black' %>"></i> 
+    <%= template.likes_count.positive? ? template.likes_count : "いいね" %>
+  <% end %>
+<% else %>
+  <i class='far fa-heart text-black'></i> 
   <%= template.likes_count.positive? ? template.likes_count : "いいね" %>
 <% end %>

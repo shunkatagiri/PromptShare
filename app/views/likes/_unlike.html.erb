@@ -1,4 +1,8 @@
 <%# app/views/likes/_unlike.html.erb %>
-<%= button_to template_like_path(template, like), method: :delete, class: "inline-flex items-center px-4 py-2  hover:bg-gray-100 text-black font-bold rounded shadow", data: { turbo_frame: dom_id(template, :like) } do %>
-  <i class="fas fa-heart text-red-500"></i> <%= template.likes_count %> <!-- いいね数を表示 -->
+<% if logged_in? %>
+  <%= button_to template_like_path(template, like), method: :delete, class: "inline-flex items-center px-4 py-2  hover:bg-gray-100 text-black font-bold rounded shadow", data: { turbo_frame: dom_id(template, :like) } do %>
+    <i class="fas fa-heart text-red-500"></i> <%= template.likes_count %> <!-- いいね数を表示 -->
+  <% end %>
+<% else %>
+  <i class='fas fa-heart text-red-500'></i> <%= template.likes_count %>
 <% end %>

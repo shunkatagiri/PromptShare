@@ -1,6 +1,6 @@
 # app/controllers/likes_controller.rb
 class LikesController < ApplicationController
-  before_action :require_login, only: [:create]
+  before_action :require_login, only: [:create, :destroy]
 
   def create
     @template = Template.find(params[:template_id])
