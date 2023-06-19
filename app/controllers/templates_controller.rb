@@ -1,7 +1,7 @@
 # app/controllers/templates_controller.rb
 class TemplatesController < ApplicationController
   before_action :require_login, only: [:create ,:edit, :update, :destroy]
-  before_action :redirect_to_landing_page_if_not_logged_in, only: [:index, :show, :new, :edit, :update, :destroy]
+  before_action :redirect_to_landing_page_if_not_logged_in, only: [:show, :new, :edit, :update, :destroy, :search]
 
   def index
     @category = Category.find(params[:category_id]) if params[:category_id].present?
