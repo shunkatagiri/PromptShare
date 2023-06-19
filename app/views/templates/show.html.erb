@@ -14,7 +14,7 @@
       <!-- タイトルに背景色を追加し、テキストサイズを大きくします。 -->
       <h2 class="text-4xl font-bold my-6 bg-blue-200 p-3 text-center rounded-lg shadow-lg"><%= @template.title %></h2>
 
-      <!-- ユーザーアクション -->
+       <!-- ユーザーアクション -->
       <div class="flex justify-between items-center mt-4">
         <div class="text-gray-600 text-lg font-semibold">GPT-4推奨 <%= @template.importance %></div>
         <div class="flex space-x-4">
@@ -43,8 +43,60 @@
               <% end %>
             <% end %>
           <% end %>
-          
-          <!-- 省略 -->
+
+
+          <!-- ユーザーが所有者である場合のみ、編集と削除ボタンを表示 -->
+          <% if @template.user == current_user %>
+            <!-- 編集ボタン -->
+            <%= link_to edit_template_path(@template), class: 'inline-flex items-center px-4 py-2  hover:bg-gray-100 text-black font-bold rounded shadow', data: { turbo_frame: '_top' } do %>
+              <i class="fas fa-pencil-alt"></i> 編集
+            <% end %>
+
+            <!-- 削除ボタン -->
+            <%= button_to template_path(@template), method: :delete, data: { turbo_confirm: '本当に削除しますか?' }, class: "inline-flex items-center px-4 py-2  hover:bg-gray-100 text-black font-bold rounded shadow" do %>
+              <i class="fas fa-trash"></i> 削除
+            <% end %>
+          <% end %>
+
+          <!-- Twitterシェアボタン -->
+          <%= link_to twitter_share_url(title: @template.title, url: template_url(@template)), target: "_blank", class: "inline-flex items-center px-4 py-2 hover:bg-gray-100 text-black font-bold rounded shadow" do %>
+            <i class="fab fa-twitter"></i> Twitterで共有
+          <% end %>
+        </div>
+      </div>
+      <p class="mt-2 text-gray-600 text-lg"><%= @template.description %></p>
+
+      <!-- コンテンツと区別するためにヘッダーの背景色を変更 -->
+      <div class="relative rounded-lg overflow-hidden shadow-lg">
+        <!-- コピーボタンのアニメーション効果 -->
+        <div class="absolute top-0 right-0 left-0 bg-gray-700 p-2 flex items-center justify-between">
+          <button data-action="click->copy#copy" class="hcb-clipboard -done flex items-center text-white" data-clipboard-target="[data-hcb-clip=&quot;1&quot;]" data-clipboard-action="copy">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5" data-copy-target="icon">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+            </svg>
+            <span class="ml-2" data-copy-target="buttonText">Copy code</span>
+          </button>
+        </div>
+        <div class="bg-gray-800 p-6">
+          <!-- 読みやすさのための追加のパディング -->
+          <pre class="text-white pt-12 pb-16 overflow-auto" data-target="copy.source"><%= @template.content %></pre>
+        </div>
+      </div>
+
+      <!-- チャット内容 -->
+      <div class="mt-6 p-6 bg-gray-100 rounded-md shadow-md">
+        <h3 class="text-xl font-semibold mb-4">プロンプトテンプレートの使用例:</h3>
+        <p><%= @template.chat_content %></p>
+        <% if @template.usage_example.present? %>
+          <iframe src="<%= @template.usage_example %>" width="800" height="600"></iframe>
+        <% end %>
+      </div>
+
+      <!-- ユーザー名の表示 -->
+        <div class="mt-6">
+          ユーザー名: <%= @template.user.name %>
+        </div>
+
 
       <!-- 視覚的な区切りのためのスペース -->
       <div class="py-6"></div>
