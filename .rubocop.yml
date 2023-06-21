@@ -11,3 +11,5 @@ AllCops:
     - 'vendor/**/*'
     - 'spec/**/*'
     - 'tmp/**/*'
+Style/StringLiterals:
+  Enabled: false
