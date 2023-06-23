@@ -1,6 +1,6 @@
 # app/controllers/application_controller.rb
 class ApplicationController < ActionController::Base
-  before_action :require_login
+  # before_action :require_login
   before_action :set_search
   
 
