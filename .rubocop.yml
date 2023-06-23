@@ -13,3 +13,23 @@ AllCops:
     - 'tmp/**/*'
 Style/StringLiterals:
   Enabled: false
+Layout/SpaceInsidePercentLiteralDelimiters:
+  Enabled: false
+Style/TrailingCommaInHashLiteral:
+ Enabled: false
+Style/BlockDelimiters:
+ Enabled: false
+Layout/FirstHashElementLineBreak:
+ Enabled: false
+Style/ColonMethodCall:
+ Enabled: false
+Layout/IndentationConsistency:
+ Enabled: false
+Layout/IndentationWidth:
+ Enabled: false
+Style/MixinUsage:
+ Enabled: false
+Style/MutableConstant:
+ Enabled: false
+Bundler/OrderedGems:
+  Enabled: false
