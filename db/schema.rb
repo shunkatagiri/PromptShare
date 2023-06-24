@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_17_072426) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_24_122442) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_17_072426) do
     t.index ["user_id"], name: "index_templates_on_user_id"
   end
 
+  create_table "user_preferences", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "preferences", default: "{}", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_preferences_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -82,4 +90,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_17_072426) do
   add_foreign_key "likes", "templates"
   add_foreign_key "likes", "users"
   add_foreign_key "templates", "users"
+  add_foreign_key "user_preferences", "users"
 end
