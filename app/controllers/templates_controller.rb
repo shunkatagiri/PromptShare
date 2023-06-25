@@ -39,6 +39,11 @@ class TemplatesController < ApplicationController
     if current_user
       @bookmark = @template.bookmarks.find_by(user_id: current_user.id)
       @like = @template.likes.find_by(user: current_user)
+
+      # add user's behavior
+      current_user.preferences[@template.id.to_s] ||= 0
+      current_user.preferences[@template.id.to_s] += 1
+      current_user.save
     end
   end
 
