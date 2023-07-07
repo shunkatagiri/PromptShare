@@ -6,12 +6,10 @@ export default class extends Controller {
   connect() {
     console.log("Connected to dropdown menu controller.")
     this.menuTarget.classList.add('hidden')
-    // ページ全体へのクリックイベントリスナを追加
     document.addEventListener('click', this.outsideClick.bind(this))
   }
 
   disconnect() {
-    // イベントリスナーを削除
     document.removeEventListener('click', this.outsideClick.bind(this))
   }
 
@@ -21,7 +19,6 @@ export default class extends Controller {
   }
 
   outsideClick(event) {
-    // メニューターゲットの外側がクリックされた場合、メニューを閉じる
     if (!this.menuTarget.contains(event.target) && !this.menuTarget.classList.contains('hidden')) {
       this.menuTarget.classList.add('hidden')
     }
