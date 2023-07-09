@@ -61,6 +61,7 @@ class TemplatesController < ApplicationController
   def update
     @template = Template.find(params[:id])
     if @template.user == current_user
+      tag_list = params[:tag_list].split(",")
       if @template.update(template_params)
         redirect_to template_path(@template), notice: 'テンプレートが正常に更新されました。'
       else
