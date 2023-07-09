@@ -41,10 +41,9 @@ class TemplatesController < ApplicationController
     end
   end
 
-# app/controllers/templates_controller.rb
-
   def create
     @template = current_user.templates.build(template_params)
+    tag_list = params[:tag_list].split(",")
     if @template.save
       redirect_to template_path(@template), notice: 'テンプレートが正常に投稿されました'
     else
