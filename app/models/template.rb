@@ -4,6 +4,7 @@ class Template < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liking_users, through: :likes, source: :user
   before_save :extract_link_from_usage_example
+  acts_as_taggable_on :tags
 
   belongs_to :user
   belongs_to :category
