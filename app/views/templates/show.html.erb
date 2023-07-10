@@ -1,18 +1,22 @@
 <%# app/views/templates/show.html.erb %>
 <%= turbo_frame_tag 'templates' do %>
 <section class="min-h-screen px-6 py-8 bg-white" data-controller="copy">
-  <!-- カテゴリー一覧 -->
   <div class="mt-4">
     <%= render partial: 'categories/category_list' %>
   </div>
 
-  <!-- 視覚的な区切りのためのスペース -->
   <div class="py-6"></div>
 
   <div class="flex flex-wrap justify-center">
     <div class="w-full mt-0">
-      <!-- タイトルに背景色を追加し、テキストサイズを大きくします。 -->
       <h2 class="text-4xl font-bold my-6 bg-blue-200 p-3 text-center rounded-lg shadow-lg"><%= @template.title %></h2>
+
+      <!-- タグの表示 -->
+      <div class="flex flex-wrap justify-center mt-2 mb-4">
+        <% @template.tag_list.each do |tag| %>
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><%= tag %></span>
+        <% end %>
+      </div>
 
       <!-- ユーザーアクション -->
       <div class="flex justify-between items-center mt-4">
