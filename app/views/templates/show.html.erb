@@ -14,7 +14,7 @@
       <!-- タグの表示 -->
       <div class="flex flex-wrap justify-center mt-2 mb-4">
         <% @template.tag_list.each do |tag| %>
-          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"><%= tag %></span>
+            <%= link_to tag, tag_path(tag), class: "inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" %>
         <% end %>
       </div>
 
