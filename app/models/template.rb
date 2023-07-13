@@ -4,6 +4,7 @@ class Template < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liking_users, through: :likes, source: :user
   before_save :extract_link_from_usage_example
+  acts_as_taggable_on :tags
 
   belongs_to :user
   belongs_to :category
@@ -17,18 +18,18 @@ class Template < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ['title', 'content'] # ここに検索可能な属性を追加します
+    ['title', 'content'] 
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ['user', 'category'] # 検索可能な関連付け
+    ['user', 'category']
   end
 
   private
 
   def extract_link_from_usage_example
     link_regex = /https:\/\/chat\.openai\.com\/share\/\S+/
-    link = self.usage_example[link_regex]
+    link = self.usage_example[link_regex] 
     if link
       self.link = link 
       chat_content = get_chat_content_from_link(link)
@@ -37,6 +38,5 @@ class Template < ApplicationRecord
   end
   
   def get_chat_content_from_link(link)
-    # OpenAIのAPIを利用して、linkからチャットの内容を取得するコードを書く
   end
 end
