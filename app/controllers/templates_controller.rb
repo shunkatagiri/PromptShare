@@ -40,17 +40,17 @@ class TemplatesController < ApplicationController
       @like = @template.likes.find_by(user: current_user)
     end
   end
-
+  
   def create
     @template = current_user.templates.build(template_params)
-    tag_list = params[:tag_list].split(",")
+    tag_list = params[:tag_list].present? ? params[:tag_list].split(",") : []
     if @template.save
       redirect_to template_path(@template), notice: 'テンプレートが正常に投稿されました'
     else
       render :new
     end
   end
-
+  
   def edit
     @template = Template.find(params[:id])
     if @template.user != current_user
